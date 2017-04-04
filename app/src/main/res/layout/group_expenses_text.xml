@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/GroupName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Date"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/Date"
+        android:gravity="center"
+        android:text="Group 1" />
+
+    <TextView
+        android:id="@+id/Member"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ExpenseName"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="26dp"
+        android:text="Member 1" />
+
+    <TextView
+        android:id="@+id/Amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Member"
+        android:layout_alignBottom="@+id/Member"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="$ 20" />
+
+    <TextView
+        android:id="@+id/ExpenseName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Member"
+        android:layout_alignStart="@+id/Member"
+        android:layout_below="@+id/GroupName"
+        android:layout_marginTop="28dp"
+        android:text="Expense 1" />
+
+    <TextView
+        android:id="@+id/Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Member"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:text="4/05/2017" />
+
+</RelativeLayout>

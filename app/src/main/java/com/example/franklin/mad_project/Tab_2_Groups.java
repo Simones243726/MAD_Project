@@ -5,7 +5,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.content.Intent;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -33,14 +36,22 @@ public class Tab_2_Groups extends Fragment {
         ArrayList stringList = new ArrayList();
             stringList.add("Group 1");
             stringList.add("Group 2");
-            stringList.add("Group 3");
-            stringList.add("Group 4");
 
 
         CustomAdapter adapter = new CustomAdapter (stringList, getActivity());
         listGroup.setAdapter(adapter);
 
+        listGroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle b = new Bundle();
 
+                Intent newIntent = new Intent(Tab_2_Groups.this.getActivity(), GroupExpenses.class);
+                b.putLong("index", id);
+                newIntent.putExtras(b);
+                getActivity().startActivity(newIntent);
+            }
+        });
 
 
 
