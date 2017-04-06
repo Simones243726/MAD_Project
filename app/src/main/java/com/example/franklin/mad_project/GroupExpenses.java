@@ -1,7 +1,11 @@
 package com.example.franklin.mad_project;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import java.util.ArrayList;
 
@@ -37,9 +41,32 @@ public class GroupExpenses extends Activity{
         } else {
             exp_names = group2_names;
         }
+
+
+
+
+
         expensesView = (ListView) findViewById(R.id.group_expenses);
         CustomAdapter expAdapter = new CustomAdapter (exp_names, this);
         expensesView.setAdapter(expAdapter);
+
+        Button balance = (Button) findViewById(R.id.btnBalance);
+        balance.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Bundle b = getIntent().getExtras();
+
+                Bundle b1 = new Bundle();
+                Intent newIntent = new Intent(GroupExpenses.this, PeopleExpenses.class);
+                b1.putLong("index", b.getLong("index"));
+                newIntent.putExtras(b1);
+                startActivity(newIntent);
+
+
+                //Intent intent = new Intent(view.getContext(),PeopleExpenses.class);
+                //startActivityForResult(intent,0);
+                //finish();
+            }
+        });
 
     }
 }
