@@ -11,21 +11,22 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by franklin on 03/04/17.
+ * Created by franklin on 06/04/17.
  */
 
-public class CustomAdapter extends ArrayAdapter {
-    private ArrayList dataSet;
+public class CustomAdapter2 extends ArrayAdapter {
+    private ArrayList dataSet, dataSet2;
     Context mContext;
 
-    private static class ViewHolder{
+    private static class ViewHolder2{
         TextView txtName;
     }
 
-    public CustomAdapter(ArrayList data, Context context){
+    public CustomAdapter2(ArrayList data, ArrayList data1, Context context){
         super(context, R.layout.tab_2_groups_text, data);
         this.dataSet= data;
         this.mContext = context;
+        this.dataSet2 = data1;
     }
 
     @Nullable
@@ -36,16 +37,16 @@ public class CustomAdapter extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-        ViewHolder viewHolder;
+        CustomAdapter2.ViewHolder2 viewHolder;
         if (convertView==null) {
-            viewHolder = new ViewHolder();
+            viewHolder = new CustomAdapter2.ViewHolder2();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.tab_2_groups_text, parent, false);
             viewHolder.txtName = (TextView)convertView.findViewById(R.id.GroupTextTittle);
             viewHolder.txtName.setText(getItem(position));
         }
         else{
-            viewHolder=(ViewHolder) convertView.getTag();
+            viewHolder=(CustomAdapter2.ViewHolder2) convertView.getTag();
         }
         return convertView;
     }

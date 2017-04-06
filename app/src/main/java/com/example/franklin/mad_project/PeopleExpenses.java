@@ -15,6 +15,7 @@ import java.util.ArrayList;
  * Created by franklin on 06/04/17.
  */
 
+
 public class PeopleExpenses extends Activity {
     ListView peopleView;
 
@@ -36,17 +37,28 @@ public class PeopleExpenses extends Activity {
         group2_nembers.add("Member 7");
         group2_nembers.add("Member 8");
 
+
+
         Bundle b = getIntent().getExtras();
         ArrayList exp_names;
+        ArrayList exp_amount;
 
         if(b.getLong("index") == 0) {
             exp_names = group1_members;
+            //exp_amount=group1_members_amount;
+            exp_amount = b.getStringArrayList("group1");
         } else {
+            //exp_amount=group2_members_amount;
             exp_names = group2_nembers;
+            exp_amount = b.getStringArrayList("group2");
         }
         peopleView = (ListView) findViewById(R.id.people_expenses);
         CustomAdapter expAdapter = new CustomAdapter (exp_names, this);
         peopleView.setAdapter(expAdapter);
+
+        peopleView = (ListView) findViewById(R.id.people_expenses);
+        CustomAdapter amAdapter = new CustomAdapter (exp_amount, this);
+        peopleView.setAdapter(amAdapter);
 
 
 
