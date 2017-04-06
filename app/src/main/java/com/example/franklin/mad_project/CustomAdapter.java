@@ -42,7 +42,6 @@ public class CustomAdapter extends ArrayAdapter {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.tab_2_groups_text, parent, false);
             viewHolder.txtName = (TextView)convertView.findViewById(R.id.GroupTextTittle);
-            //viewHolder.txtName = (TextView)convertView.findViewById(R.id.GroupTextDescription);
         }
         else{
             viewHolder=(ViewHolder) convertView.getTag();

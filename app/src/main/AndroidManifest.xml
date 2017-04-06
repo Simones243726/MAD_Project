@@ -21,6 +21,9 @@
         </activity>
         <activity
             android:name=".GroupExpenses"></activity>
+
+        <activity
+            android:name=".PeopleExpenses"></activity>
     </application>
 
 </manifest>
