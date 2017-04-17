@@ -22,22 +22,36 @@ import android.support.design.widget.FloatingActionButton;
 public class GroupExpenses extends Activity{
     ListView expensesView;
 
+    PeopleList[] group1_names = new PeopleList[]{
+            new PeopleList("Item 1", "Member 1", "You owe: $20", "17/05/2017", "Group 1"),
+            new PeopleList("Item 1", "You", "You lent: $15", "17/05/2017", "Group 1"),
+            new PeopleList("Item 2", "Member 3", "You owe: $2", "17/05/2017", "Group 1"),
+            new PeopleList("Item 3", "Member 1", "You owe: $13", "17/05/2017", "Group 1")
+    };
+
+    PeopleList[] group2_names = new PeopleList[]{
+            new PeopleList("Item 5", "Member 3", "You owe: $56", "17/05/2017", "Group 2"),
+            new PeopleList("Item 4", "Member 5", "You owe: $21", "17/05/2017", "Group 2"),
+            new PeopleList("Item 2", "You", "You lent: $31", "17/05/2017", "Group 2"),
+            new PeopleList("Item 3", "Member 2", "You owe: $11", "17/05/2017", "Group 2")
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_expenses);
 
-        ArrayList group1_names = new ArrayList();
-        group1_names.add("1_exp1");
-        group1_names.add("1_exp2");
-        group1_names.add("1_exp3");
-        group1_names.add("1_exp4");
+        //ArrayList group1_names = new ArrayList();
+        //group1_names.add("1_exp1");
+        //group1_names.add("1_exp2");
+        //group1_names.add("1_exp3");
+        //group1_names.add("1_exp4");
 
-        ArrayList group2_names = new ArrayList();
-        group2_names.add("2_exp1");
-        group2_names.add("2_exp2");
-        group2_names.add("2_exp3");
-        group2_names.add("2_exp4");
+        //ArrayList group2_names = new ArrayList();
+        //group2_names.add("2_exp1");
+        //group2_names.add("2_exp2");
+        //group2_names.add("2_exp3");
+        //group2_names.add("2_exp4");
 
         final ArrayList group1_members_amount = new ArrayList();
         group1_members_amount.add("5");
@@ -52,20 +66,35 @@ public class GroupExpenses extends Activity{
         group2_members_amount.add("-5");
 
         Bundle b = getIntent().getExtras();
-        ArrayList exp_names;
+        //ArrayList exp_names;
+        PeopleList[] exp_names;
+
         if(b.getLong("index") == 0) {
-            exp_names = group1_names;
+
+            //exp_names = group1_names;
+            //exp_names = group1_names;
+            expensesView = (ListView) findViewById(R.id.group_expenses);
+            CustomAdapterPeopleExpenses expAdapter = new CustomAdapterPeopleExpenses(this.getBaseContext(),group1_names);
+            expensesView.setAdapter(expAdapter);
+
+
         } else {
-            exp_names = group2_names;
+
+            expensesView = (ListView) findViewById(R.id.group_expenses);
+            CustomAdapterPeopleExpenses expAdapter = new CustomAdapterPeopleExpenses(this.getBaseContext(),group2_names);
+            expensesView.setAdapter(expAdapter);
+
+
+            //exp_names = group2_names;
         }
 
 
 
 
 
-        expensesView = (ListView) findViewById(R.id.group_expenses);
-        CustomAdapter expAdapter = new CustomAdapter (exp_names, this);
-        expensesView.setAdapter(expAdapter);
+        //expensesView = (ListView) findViewById(R.id.group_expenses);
+        //CustomAdapter expAdapter = new CustomAdapter (exp_names, this);
+        //expensesView.setAdapter(expAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.addExp);
         fab.setOnClickListener(new View.OnClickListener() {

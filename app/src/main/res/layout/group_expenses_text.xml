@@ -7,54 +7,53 @@
     android:weightSum="1">
 
     <TextView
-        android:id="@+id/GroupName"
+        android:id="@+id/GroupExpenseItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/Date"
+        android:text="TextView"
+        android:textStyle="bold"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/Date"
-        android:gravity="center"
-        android:text="Group 1" />
-
-    <TextView
-        android:id="@+id/Member"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/ExpenseName"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="26dp"
-        android:text="Member 1" />
+        android:layout_marginTop="18dp" />
 
     <TextView
-        android:id="@+id/Amount"
+        android:id="@+id/GroupExpenseMember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/Member"
-        android:layout_alignBottom="@+id/Member"
+        android:text="TextView"
+        android:textStyle="bold"
+        android:layout_below="@+id/GroupExpenseItem"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/GroupExpenseAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textStyle="bold"
+        android:layout_below="@+id/GroupExpenseMember"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/GroupExpenseGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:text="$ 20" />
+        android:layout_below="@+id/GroupExpenseItem"
+        android:text="TextView"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/ExpenseName"
+        android:id="@+id/GroupExpenseDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/Member"
-        android:layout_alignStart="@+id/Member"
-        android:layout_below="@+id/GroupName"
-        android:layout_marginTop="28dp"
-        android:text="Expense 1" />
-
-    <TextView
-        android:id="@+id/Date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Member"
+        android:layout_below="@+id/GroupExpenseAmount"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-        android:text="4/05/2017" />
+        android:text="TextView"
+        android:textStyle="bold" />
 
 </RelativeLayout>

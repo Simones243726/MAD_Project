@@ -26,16 +26,10 @@ import static android.R.attr.data;
 
 
 public class Tab_2_Groups extends Fragment {
-
     ListView listGroup;
-
-
-
-
     public Tab_2_Groups(){
 
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,8 +66,5 @@ public class Tab_2_Groups extends Fragment {
         });
         return rootView;
     }
-////
-
-    ////
 
 }

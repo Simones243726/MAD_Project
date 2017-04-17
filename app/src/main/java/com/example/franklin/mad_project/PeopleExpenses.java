@@ -25,6 +25,7 @@ public class PeopleExpenses extends Activity {
         setContentView(R.layout.people_expenses);
 
 
+
         ArrayList group1_members = new ArrayList();
         group1_members.add("Member 1");
         group1_members.add("Member 2");
@@ -36,8 +37,6 @@ public class PeopleExpenses extends Activity {
         group2_nembers.add("Member 6");
         group2_nembers.add("Member 7");
         group2_nembers.add("Member 8");
-
-
 
         Bundle b = getIntent().getExtras();
         ArrayList exp_names;

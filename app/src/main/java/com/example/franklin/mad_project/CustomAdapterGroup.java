@@ -17,7 +17,6 @@ public class CustomAdapterGroup extends ArrayAdapter<GroupList> {
             super(context, R.layout.tab_2_groups_text, datos);
                 this.dat = datos;
         }
-
         public View getView(int position, View convertView, ViewGroup parent){
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 View item = inflater.inflate(R.layout.tab_2_groups_text, null);
@@ -30,8 +29,6 @@ public class CustomAdapterGroup extends ArrayAdapter<GroupList> {
 
                 TextView textAmo = (TextView) item.findViewById(R.id.GroupTextAmount);
                 textAmo.setText(dat[position].getAmount());
-
-
                 return (item);
         }
     }
