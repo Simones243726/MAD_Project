@@ -23,7 +23,7 @@ public class GroupExpenses extends Activity{
     ListView expensesView;
 
     PeopleList[] group1_names = new PeopleList[]{
-            new PeopleList("Item 1", "Member 1", "You owe: $20", "17/05/2017", "Group 1"),
+            new PeopleList("Item 1", "Member 1", "You owe: $21", "17/05/2017", "Group 1"),
             new PeopleList("Item 1", "You", "You lent: $15", "17/05/2017", "Group 1"),
             new PeopleList("Item 2", "Member 3", "You owe: $2", "17/05/2017", "Group 1"),
             new PeopleList("Item 3", "Member 1", "You owe: $13", "17/05/2017", "Group 1")
