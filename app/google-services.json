@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "191816086119",
+    "firebase_url": "https://mad17-cd2ef.firebaseio.com",
+    "project_id": "mad17-cd2ef",
+    "storage_bucket": "mad17-cd2ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191816086119:android:5ca472c985725219",
+        "android_client_info": {
+          "package_name": "com.example.franklin.mad_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "191816086119-88moqk50isgm38s8llpe4gcbuhb3j22d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyexpFmdnzEkXhw08xistVFtg8Yo-RaOA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
