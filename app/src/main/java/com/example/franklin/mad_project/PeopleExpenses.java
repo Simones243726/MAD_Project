@@ -36,7 +36,7 @@ public class PeopleExpenses extends Activity {
         group2_nembers.add("Member 5");
         group2_nembers.add("Member 6");
         group2_nembers.add("Member 7");
-        group2_nembers.add("Member 8");
+        group2_nembers.add("Member 9");
 
         Bundle b = getIntent().getExtras();
         ArrayList exp_names;
