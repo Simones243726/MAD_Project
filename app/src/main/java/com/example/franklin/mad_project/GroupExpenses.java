@@ -26,14 +26,16 @@ public class GroupExpenses extends Activity{
             new PeopleList("Item 1", "Member 1", "You owe: $21", "17/05/2017", "Group 1"),
             new PeopleList("Item 1", "You", "You lent: $15", "17/05/2017", "Group 1"),
             new PeopleList("Item 2", "Member 3", "You owe: $2", "17/05/2017", "Group 1"),
-            new PeopleList("Item 3", "Member 1", "You owe: $13", "17/05/2017", "Group 1")
     };
 
     PeopleList[] group2_names = new PeopleList[]{
             new PeopleList("Item 5", "Member 3", "You owe: $56", "17/05/2017", "Group 2"),
             new PeopleList("Item 4", "Member 5", "You owe: $21", "17/05/2017", "Group 2"),
             new PeopleList("Item 2", "You", "You lent: $31", "17/05/2017", "Group 2"),
-            new PeopleList("Item 3", "Member 2", "You owe: $11", "17/05/2017", "Group 2")
+            new PeopleList("Item 3", "Member 2", "You owe: 3", "17/05/2017", "Group 2"),
+            new PeopleList("Item 2", "Member 5", "You owe: $23", "17/05/2017", "Group 2"),
+            new PeopleList("Item 1", "You", "You lent: $12", "17/05/2017", "Group 2"),
+            new PeopleList("Item 3", "Member 2", "You owe: $14", "17/05/2017", "Group 2")
     };
 
     @Override
@@ -57,13 +59,15 @@ public class GroupExpenses extends Activity{
         group1_members_amount.add("5");
         group1_members_amount.add("10");
         group1_members_amount.add("-2");
-        group1_members_amount.add("-5");
 
         final ArrayList group2_members_amount = new ArrayList();
-        group2_members_amount.add("5");
-        group2_members_amount.add("10");
-        group2_members_amount.add("-2");
-        group2_members_amount.add("-5");
+        group2_members_amount.add("1");
+        group2_members_amount.add("2");
+        group2_members_amount.add("-3");
+        group2_members_amount.add("-4");
+        group2_members_amount.add("6");
+        group2_members_amount.add("-7");
+        group2_members_amount.add("-8");
 
         Bundle b = getIntent().getExtras();
         //ArrayList exp_names;
