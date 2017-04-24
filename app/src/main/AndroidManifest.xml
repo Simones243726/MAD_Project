@@ -38,7 +38,11 @@
             android:name=".GroupExpenses"></activity>
 
         <activity
-            android:name=".PeopleExpenses"></activity>
+            android:name=".GroupCreation"></activity>
+
+
+        <activity
+        android:name=".PeopleExpenses"></activity>
     </application>
 
 </manifest>
