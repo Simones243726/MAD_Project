@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.icu.util.RangeValueIterator;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import java.security.acl.Group;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
 import android.support.design.widget.FloatingActionButton;
 
 
@@ -37,6 +44,7 @@ public class GroupExpenses extends Activity{
             new PeopleList("Item 1", "You", "You lent: $12", "17/05/2017", "Group 2"),
             new PeopleList("Item 3", "Member 2", "You owe: $14", "17/05/2017", "Group 2")
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +112,7 @@ public class GroupExpenses extends Activity{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(GroupExpenses.this);
+                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(GroupExpenses.this);
                 LayoutInflater inflater = getLayoutInflater();
                 // Inflate and set the layout for the dialog
                 alertDialogBuilder.setView(inflater.inflate(R.layout.dialog_add_expense, null));
@@ -121,10 +129,19 @@ public class GroupExpenses extends Activity{
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int id) {
-                                int amount = Integer.parseInt(editText.getText().toString());
+                                int amount;
+                                amount = Integer.parseInt(editText.getText().toString());
 
-                                for(int i = 0; i<4; i++){
+                                for(int i = 0; i<group1_members_amount.size(); i++){
                                     group1_members_amount.set(i, String.valueOf(amount+Integer.parseInt(group1_members_amount.get(i).toString())));
+
+
+                                }
+
+                                for(int i = 0; i<group2_members_amount.size(); i++){
+                                    group2_members_amount.set(i, String.valueOf(amount+Integer.parseInt(group2_members_amount.get(i).toString())));
+
+
                                 }
                                 // resultText.setText("Hello, " + editText.getText());
                             }
@@ -150,7 +167,6 @@ public class GroupExpenses extends Activity{
         balance.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 Bundle b = getIntent().getExtras();
-
                 Bundle b1 = new Bundle();
                 Intent newIntent = new Intent(GroupExpenses.this, PeopleExpenses.class);
                 b1.putLong("index", b.getLong("index"));

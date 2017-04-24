@@ -25,29 +25,26 @@ public class PeopleExpenses extends Activity {
         setContentView(R.layout.people_expenses);
 
 
-
         ArrayList group1_members = new ArrayList();
         group1_members.add("Member 1");
         group1_members.add("Member 2");
         group1_members.add("Member 3");
-        group1_members.add("Member 4");
 
         ArrayList group2_nembers = new ArrayList();
+        group2_nembers.add("Member 4");
         group2_nembers.add("Member 5");
         group2_nembers.add("Member 6");
         group2_nembers.add("Member 7");
-        group2_nembers.add("Member 9");
 
         Bundle b = getIntent().getExtras();
         ArrayList exp_names;
         ArrayList exp_amount;
 
-        if(b.getLong("index") == 0) {
+        if (b.getLong("index") == 0) {
+
             exp_names = group1_members;
-            //exp_amount=group1_members_amount;
             exp_amount = b.getStringArrayList("group1");
         } else {
-            //exp_amount=group2_members_amount;
             exp_names = group2_nembers;
             exp_amount = b.getStringArrayList("group2");
         }
@@ -59,6 +56,23 @@ public class PeopleExpenses extends Activity {
         CustomAdapter amAdapter = new CustomAdapter (exp_amount, this);
         peopleView.setAdapter(amAdapter);
 
+
+        //MemberList[] Lista1 = new MemberList[]{
+        //        new MemberList("Item 1", "Member 1"),
+        //        new MemberList("Item 1", "You"),
+        //        new MemberList("Item 2", "Member 3"),
+        //};
+
+        //MemberList[] Lista1 = new MemberList[]{
+        //        new MemberList("Member 1", "3"),
+       //         new MemberList("Member 2", "4"),
+       //         new MemberList("Member 3", "5"),
+        //};
+
+
+        //peopleView = (ListView) findViewById(R.id.people_expenses);
+        //CustomAdapterMembers amAdapter = new CustomAdapterMembers(this.getBaseContext(), Lista1);
+        //peopleView.setAdapter(amAdapter);
 
 
     }
