@@ -1,6 +1,9 @@
 package com.example.franklin.mad_project;
 
 import android.*;
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.MatrixCursor;
@@ -8,10 +11,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +38,8 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     SimpleCursorAdapter mAdapter;
     MatrixCursor mMatrixCursor;
+    private static final int PERMISSION_REQUEST_CODE = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,25 +84,32 @@ public class MainActivity extends AppCompatActivity {
                 //        .setAction("Action", null).show();
                 setContentView(R.layout.group_creation_2);
 
-                if (ContextCompat.checkSelfPermission(getBaseContext(), android.Manifest.permission.READ_CONTACTS)== PackageManager.PERMISSION_GRANTED) {
+                requestPermission();
 
-                    mMatrixCursor=new MatrixCursor(new String[]{"_id", "name", "photo", "details"});
-
-                    mAdapter = new SimpleCursorAdapter(getBaseContext(),
-                            R.layout.group_creation_3_text, null, new String[]{"name", "photo", "details"}, new int[]{R.id.txtName, R.id.ImgContact,R.id.txtTel},0);
-
-                    ListView lstContacts = (ListView) findViewById(R.id.lst_contacts);
-                    lstContacts.setAdapter(mAdapter);
-
-                    ListViewContactsLoader listViewContactsLoader = new ListViewContactsLoader();
-                    listViewContactsLoader.execute();
-                }
-
+                mMatrixCursor=new MatrixCursor(new String[]{"_id", "name", "photo", "details"});
+                mAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.group_creation_3_text, null, new String[]{"name", "photo", "details"}, new int[]{R.id.txtName, R.id.ImgContact,R.id.txtTel},0);
+                ListView lstContacts = (ListView) findViewById(R.id.lst_contacts);
+                lstContacts.setAdapter(mAdapter);
+                ListViewContactsLoader listViewContactsLoader = new ListViewContactsLoader();
+                listViewContactsLoader.execute();
 
             }
         });
-
     }
+
+    ///
+    private void requestPermission(){
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_CONTACTS)){
+
+            Toast.makeText(getApplicationContext(),"Allow contacts for additional functionality.",Toast.LENGTH_LONG).show();
+
+        } else {
+
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_CONTACTS},PERMISSION_REQUEST_CODE);
+        }
+    }
+
 
 
     ///
