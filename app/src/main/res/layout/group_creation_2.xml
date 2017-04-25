@@ -42,11 +42,14 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <Spinner
-        android:id="@+id/SpinnerChooseMembers"
+    <ListView
+        android:id="@+id/lst_contacts"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ButtonCreateGroupFinal"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView5" />
+        android:layout_below="@+id/textView5"
+        android:layout_marginTop="63dp" />
+
 </RelativeLayout>
