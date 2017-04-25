@@ -4,6 +4,7 @@ import android.*;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.MatrixCursor;
@@ -28,6 +29,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,7 +42,11 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+
+import static com.example.franklin.mad_project.R.id.lst_contacts;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -84,12 +91,34 @@ public class MainActivity extends AppCompatActivity {
                 //        .setAction("Action", null).show();
                 setContentView(R.layout.group_creation_2);
 
-                requestPermission();
+                requestPermissionContact();
+                requestPermissionSMS();
 
                 mMatrixCursor=new MatrixCursor(new String[]{"_id", "name", "photo", "details"});
                 mAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.group_creation_3_text, null, new String[]{"name", "photo", "details"}, new int[]{R.id.txtName, R.id.ImgContact,R.id.txtTel},0);
-                ListView lstContacts = (ListView) findViewById(R.id.lst_contacts);
+                final ListView lstContacts = (ListView) findViewById(lst_contacts);
                 lstContacts.setAdapter(mAdapter);
+
+                lstContacts.setOnItemClickListener(new AdapterView.OnItemClickListener()
+                {
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+                        String phoneNumber = ((TextView) view.findViewById(R.id.txtTel)).getText().toString();
+                        Toast.makeText(MainActivity.this, phoneNumber, Toast.LENGTH_SHORT).show();
+                        //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("sms:HOla que tal"+ phoneNumber)));
+                        //Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+ phoneNumber));
+                        //intent.putExtra("sms_body", "Hello, Download this App");
+
+                        //startActivity(intent);
+                        SmsManager sms = SmsManager.getDefault();
+                        sms.sendTextMessage(phoneNumber, null, "Download this App", null, null);
+
+
+                    }
+                });
+
                 ListViewContactsLoader listViewContactsLoader = new ListViewContactsLoader();
                 listViewContactsLoader.execute();
 
@@ -98,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     ///
-    private void requestPermission(){
+    private void requestPermissionContact(){
 
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_CONTACTS)){
 
@@ -107,6 +136,17 @@ public class MainActivity extends AppCompatActivity {
         } else {
 
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_CONTACTS},PERMISSION_REQUEST_CODE);
+        }
+    }
+    private void requestPermissionSMS(){
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.SEND_SMS)){
+
+            Toast.makeText(getApplicationContext(),"Allow SMS for additional functionality.",Toast.LENGTH_LONG).show();
+
+        } else {
+
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},PERMISSION_REQUEST_CODE);
         }
     }
 
