@@ -1,10 +1,6 @@
 package com.example.franklin.mad_project;
 
-import android.*;
 import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.MatrixCursor;
@@ -14,12 +10,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -30,7 +23,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,9 +33,6 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 
 import static com.example.franklin.mad_project.R.id.lst_contacts;
@@ -62,13 +51,17 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     SimpleCursorAdapter mAdapter;
     MatrixCursor mMatrixCursor;
-    private static final int PERMISSION_REQUEST_CODE = 1;
+    int valPer = 0;
+    private static final int PERMISSION_REQUEST_CODE_CONTACTS = 100;
+    private static final int PERMISSION_REQUEST_CODE_SMS = 101;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        verifyPermissionContact();
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -90,10 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 //        .setAction("Action", null).show();
                 setContentView(R.layout.group_creation_2);
-
-                requestPermissionContact();
-                requestPermissionSMS();
-
                 mMatrixCursor=new MatrixCursor(new String[]{"_id", "name", "photo", "details"});
                 mAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.group_creation_3_text, null, new String[]{"name", "photo", "details"}, new int[]{R.id.txtName, R.id.ImgContact,R.id.txtTel},0);
                 final ListView lstContacts = (ListView) findViewById(lst_contacts);
@@ -127,27 +116,47 @@ public class MainActivity extends AppCompatActivity {
     }
 
     ///
-    private void requestPermissionContact(){
+    //private void requestPermissionContact(){
+    //    if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_CONTACTS)){
+    //        Toast.makeText(getApplicationContext(),"Allow contacts for additional functionality.",Toast.LENGTH_LONG).show();
+    //    } else {
+    //        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_CONTACTS},PERMISSION_REQUEST_CODE);
+    //    }
+    //}
 
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_CONTACTS)){
-
-            Toast.makeText(getApplicationContext(),"Allow contacts for additional functionality.",Toast.LENGTH_LONG).show();
-
-        } else {
-
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_CONTACTS},PERMISSION_REQUEST_CODE);
+    private void verifyPermissionContact(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS, Manifest.permission.SEND_SMS}, PERMISSION_REQUEST_CODE_CONTACTS);
+        }
+        else{
+            Toast.makeText(this, "Displaying Contacts", Toast.LENGTH_SHORT).show();
         }
     }
-    private void requestPermissionSMS(){
-
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.SEND_SMS)){
-
-            Toast.makeText(getApplicationContext(),"Allow SMS for additional functionality.",Toast.LENGTH_LONG).show();
-
-        } else {
-
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},PERMISSION_REQUEST_CODE);
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+    switch (requestCode){
+        case PERMISSION_REQUEST_CODE_CONTACTS:{
+        //if (requestCode == PERMISSION_REQUEST_CODE_CONTACTS) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                verifyPermissionContact();
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
+            }
         }
+        return;
+        case PERMISSION_REQUEST_CODE_SMS: {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                verifyPermissionContact();
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
+            }
+        }
+        return;
+
+    }
     }
 
 
