@@ -117,11 +117,11 @@ public class GroupExpenses extends Activity{
                 // Inflate and set the layout for the dialog
                 alertDialogBuilder.setView(inflater.inflate(R.layout.dialog_add_expense, null));
 
-                final EditText expenseName = (EditText) findViewById(R.id.expenseName);
+                final EditText expenseName = (EditText) findViewById(R.id.expenseAmount);
                 // set title
                 alertDialogBuilder.setTitle("Add expense");
                 View promptView = inflater.inflate(R.layout.dialog_add_expense, null);
-                final EditText editText = (EditText) promptView.findViewById(R.id.expenseName);
+                final EditText editText = (EditText) promptView.findViewById(R.id.expenseAmount);
                 alertDialogBuilder.setView(promptView);
 
                 // setup a dialog window

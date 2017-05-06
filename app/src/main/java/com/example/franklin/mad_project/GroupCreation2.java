@@ -17,6 +17,7 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,23 +60,31 @@ public class GroupCreation2 extends Activity {
                 //startActivity(intent);
                 SmsManager sms = SmsManager.getDefault();
                 sms.sendTextMessage(phoneNumber, null, "Download this App", null, null);
-
-
             }
         });
 
         GroupCreation2.ListViewContactsLoader listViewContactsLoader = new GroupCreation2.ListViewContactsLoader();
         listViewContactsLoader.execute();
 
-        // Firebase database code
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myDb = database.getReference();
+        Button createBtn = (Button) findViewById(R.id.ButtonCreateGroupFinal);
+        createBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Firebase database code
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myDb = database.getReference();
 
-        Bundle b = getIntent().getExtras();
+                Bundle b = getIntent().getExtras();
 
-        String name = b.getString("group_name");
-        Group group = new Group(name);
-        myDb.child("groups").child(name).setValue(group);
+                String name = b.getString("group_name");
+                Group group = new Group(name);
+                myDb.child("groups").child(name).setValue(group);
+
+                Toast toast = Toast.makeText(getBaseContext(), "Group created!", Toast.LENGTH_LONG);
+                toast.show();
+                finish();
+            }
+        });
 
 //        setContentView(R.layout.group_creation_2);
     }
