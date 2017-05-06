@@ -1,9 +1,5 @@
 package com.example.franklin.mad_project;
 
-/**
- * Created by Frank on 4/21/2017.
- */
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
