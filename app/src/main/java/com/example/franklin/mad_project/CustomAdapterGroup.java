@@ -24,7 +24,7 @@ public class CustomAdapterGroup extends ArrayAdapter<GroupList> {
                 TextView textTitle = (TextView) item.findViewById(R.id.GroupTextTittle);
                 textTitle.setText(dat[position].getTitle());
 
-                TextView textDesc = (TextView) item.findViewById(R.id.GroupTextDescription);
+                TextView textDesc = (TextView) item.findViewById(R.id.GroupMembersNumber);
                 textDesc.setText(dat[position].getDescription());
 
                 TextView textAmo = (TextView) item.findViewById(R.id.GroupTextAmount);

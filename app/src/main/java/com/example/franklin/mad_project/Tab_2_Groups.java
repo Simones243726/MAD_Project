@@ -47,8 +47,9 @@ public class Tab_2_Groups extends Fragment {
 
         //listGroup = (ListView)findViewById(R.id.listViewGroups);
         GroupList [] datos = new GroupList[]{
-                new GroupList("Group 1", "3 Members", "$ 10"),
-                new GroupList("Group 2", "7 Members", "$ -7")
+                new GroupList("London trip", "7", "+10€"),
+                new GroupList("House", "3", "-7€"),
+                new GroupList("Degree gift", "10", "-20€")
         };
         CustomAdapterGroup adapter = new CustomAdapterGroup(this.getContext(), datos);
         listGroup.setAdapter(adapter);

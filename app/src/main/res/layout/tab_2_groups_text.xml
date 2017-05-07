@@ -6,38 +6,52 @@
     android:orientation="horizontal"
     android:weightSum="1">
 
-    <TextView
-        android:id="@+id/GroupTextTittle"
-        android:layout_width="191dp"
-        android:layout_height="52dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+    <ImageView
+        android:id="@+id/groupIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="16dp"
+        android:paddingBottom="16dp"
+        android:src="@drawable/house" />
 
     <TextView
-        android:id="@+id/GroupTextDescription"
-        android:layout_width="193dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:gravity="end"
+        android:id="@+id/GroupTextTittle"
+        android:layout_width="210dp"
+        android:layout_height="52dp"
         android:text="TextView"
-        android:textAlignment="textEnd"
+        android:fontFamily="sans-serif"
+        android:paddingTop="17dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_toRightOf="@+id/groupIcon"
+        android:layout_toEndOf="@+id/groupIcon" />
+
+    <TextView
+        android:id="@+id/GroupMembersNumber"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_toRightOf="@id/GroupTextTittle"
+        android:gravity="right"
+        android:text="5"
+        android:layout_marginTop="10dp"
         android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/people"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_toRightOf="@id/GroupMembersNumber"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/people" />
 
     <TextView
         android:id="@+id/GroupTextAmount"
-        android:layout_width="193dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/GroupTextTittle"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/GroupTextDescription"
-        android:layout_toRightOf="@+id/GroupTextTittle"
-        android:gravity="end"
-        android:text="TextView"
-        android:textAlignment="textEnd"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/GroupMembersNumber"
+        android:layout_toRightOf="@id/GroupMembersNumber"
+        android:gravity="right"
+        android:text="+20€"
         android:textSize="18sp" />
 </RelativeLayout>
