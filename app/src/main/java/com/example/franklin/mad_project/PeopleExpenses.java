@@ -55,26 +55,6 @@ public class PeopleExpenses extends Activity {
         peopleView = (ListView) findViewById(R.id.people_expenses);
         CustomAdapter amAdapter = new CustomAdapter (exp_amount, this);
         peopleView.setAdapter(amAdapter);
-
-
-        //MemberList[] Lista1 = new MemberList[]{
-        //        new MemberList("Item 1", "Member 1"),
-        //        new MemberList("Item 1", "You"),
-        //        new MemberList("Item 2", "Member 3"),
-        //};
-
-        //MemberList[] Lista1 = new MemberList[]{
-        //        new MemberList("Member 1", "3"),
-       //         new MemberList("Member 2", "4"),
-       //         new MemberList("Member 3", "5"),
-        //};
-
-
-        //peopleView = (ListView) findViewById(R.id.people_expenses);
-        //CustomAdapterMembers amAdapter = new CustomAdapterMembers(this.getBaseContext(), Lista1);
-        //peopleView.setAdapter(amAdapter);
-
-
     }
 }
 

@@ -36,16 +36,6 @@ public class Tab_2_Groups extends Fragment {
         View rootView = inflater.inflate(R.layout.tab_2_groups, container, false);
 
         listGroup = (ListView) rootView.findViewById(R.id.listViewGroups);
-        //ArrayList stringList = new ArrayList();
-        //    stringList.add("Group 1");
-        //    stringList.add("Group 2");
-
-        //CustomAdapter adapter = new CustomAdapter (stringList, getActivity());
-        //listGroup.setAdapter(adapter);
-
-        ///
-
-        //listGroup = (ListView)findViewById(R.id.listViewGroups);
         GroupList [] datos = new GroupList[]{
                 new GroupList("London trip", "7", "+10€"),
                 new GroupList("House", "3", "-7€"),
