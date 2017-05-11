@@ -23,7 +23,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static android.R.attr.data;
 
@@ -46,23 +48,18 @@ public class Tab_2_Groups extends Fragment {
 
         listGroup = (ListView) rootView.findViewById(R.id.listViewGroups);
 
-        GroupList [] datos = new GroupList[]{
-                new GroupList("London trip", "7", "+10€"),
-                new GroupList("House", "3", "-7€"),
-                new GroupList("Degree gift", "10", "-20€")
-        };
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myDb = database.getReference();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        final List<GroupList> groups = new ArrayList<GroupList>();
 
-        myDb.child("users").child(user.getUid()).child("groups").addListenerForSingleValueEvent(new ValueEventListener() {
+        myDb.child("users").child(user.getUid()).child("groups").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                final List<Group> groups = new ArrayList<Group>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    GroupList glTemp = new GroupList(snapshot.child("name").getValue().toString(), snapshot.child("category").getValue().toString(), "0");
-                    Log.d("debug", snapshot.child("name").toString());
-                    groups.add(glTemp);
+                    List<Integer> users = new ArrayList<Integer>();
+                    Group gTemp = new Group(snapshot.child("name").getValue().toString(), snapshot.child("category").getValue().toString(), users);
+                    groups.add(gTemp);
                 }
 
                 CustomAdapterGroup adapter = new CustomAdapterGroup(getContext(), groups);

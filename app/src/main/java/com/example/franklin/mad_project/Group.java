@@ -16,4 +16,12 @@ public class Group {
         this.category = category;
         this.users = users;
     }
+
+    public String getName(){
+        return this.name;
+    }
+    public String getCategory(){
+        return this.category;
+    }
+    public List<Integer> getUsers() { return this.users; }
 }

@@ -8,11 +8,13 @@ public class GroupList {
     private String title;
     private String description;
     private String amount;
+    private String icon;
 
-    public GroupList(String tit, String des, String amo){
+    public GroupList(String tit, String des, String amo, String icon){
         title = tit;
         description = des;
         amount = amo;
+        this.icon = icon;
     }
     public String getTitle(){
 
@@ -24,4 +26,5 @@ public class GroupList {
     public String getAmount(){
         return amount;
     }
+    public String getIcon() { return this.icon; }
 }
