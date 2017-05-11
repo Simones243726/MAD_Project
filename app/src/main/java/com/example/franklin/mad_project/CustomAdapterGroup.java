@@ -7,13 +7,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Created by franklin on 17/04/17.
  */
 
 public class CustomAdapterGroup extends ArrayAdapter<GroupList> {
-        private GroupList[] dat;
-        public CustomAdapterGroup (Context context, GroupList[] datos){
+        private List<GroupList> dat;
+        public CustomAdapterGroup (Context context, List<GroupList> datos){
             super(context, R.layout.tab_2_groups_text, datos);
                 this.dat = datos;
         }
@@ -22,13 +24,13 @@ public class CustomAdapterGroup extends ArrayAdapter<GroupList> {
                 View item = inflater.inflate(R.layout.tab_2_groups_text, null);
 
                 TextView textTitle = (TextView) item.findViewById(R.id.GroupTextTittle);
-                textTitle.setText(dat[position].getTitle());
+                textTitle.setText(dat.get(position).getTitle());
 
                 TextView textDesc = (TextView) item.findViewById(R.id.GroupMembersNumber);
-                textDesc.setText(dat[position].getDescription());
+                textDesc.setText(dat.get(position).getDescription());
 
                 TextView textAmo = (TextView) item.findViewById(R.id.GroupTextAmount);
-                textAmo.setText(dat[position].getAmount());
+                textAmo.setText(dat.get(position).getAmount());
                 return (item);
         }
     }

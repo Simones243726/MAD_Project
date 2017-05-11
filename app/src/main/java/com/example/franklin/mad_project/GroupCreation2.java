@@ -22,11 +22,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static com.example.franklin.mad_project.R.id.lst_contacts;
 
@@ -40,7 +46,7 @@ public class GroupCreation2 extends Activity {
 
 
         mMatrixCursor=new MatrixCursor(new String[]{"_id", "name", "photo", "details"});
-        mAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.group_creation_3_text, null, new String[]{"name", "photo", "details"}, new int[]{R.id.txtName, R.id.ImgContact,R.id.txtTel},0);
+        /* mAdapter = new SimpleCursorAdapter(getBaseContext(), R.layout.group_creation_3_text, null, new String[]{"name", "photo", "details"}, new int[]{R.id.txtName, R.id.ImgContact,R.id.txtTel},0);
         final ListView lstContacts = (ListView) findViewById(lst_contacts);
 
         lstContacts.setAdapter(mAdapter);
@@ -64,7 +70,7 @@ public class GroupCreation2 extends Activity {
         });
 
         GroupCreation2.ListViewContactsLoader listViewContactsLoader = new GroupCreation2.ListViewContactsLoader();
-        listViewContactsLoader.execute();
+        listViewContactsLoader.execute();*/
 
         Button createBtn = (Button) findViewById(R.id.ButtonCreateGroupFinal);
         createBtn.setOnClickListener(new View.OnClickListener() {
@@ -73,12 +79,21 @@ public class GroupCreation2 extends Activity {
                 // Firebase database code
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myDb = database.getReference();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                 Bundle b = getIntent().getExtras();
 
                 String name = b.getString("group_name");
-                Group group = new Group(name);
-                myDb.child("groups").child(name).setValue(group);
+                String category = b.getString("group_category");
+                List<Integer> users = new ArrayList<Integer>();
+                Group group = new Group(name, category, users);
+                myDb.child("users").child(user.getUid()).child("groups").child(name).setValue(group);
+
+                DatabaseReference newRef = myDb.child("groups").push();
+
+                newRef.setValue(group);
+
+                myDb.child("userGroups").child("myUser").setValue(user);
 
                 Toast toast = Toast.makeText(getBaseContext(), "Group created!", Toast.LENGTH_LONG);
                 toast.show();

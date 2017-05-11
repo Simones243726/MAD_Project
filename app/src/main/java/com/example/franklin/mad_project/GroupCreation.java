@@ -15,10 +15,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.net.Uri;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,15 +43,22 @@ public class GroupCreation extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_creation_1);
+        Spinner spinner = (Spinner) findViewById(R.id.SpinnerGroupCategory);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.categories_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
         Button nextBtn = (Button) findViewById(R.id.ButtonCreateGroupNext);
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EditText nameText = (EditText)findViewById(R.id.TextNameGroup);
+                Spinner spinner = (Spinner) findViewById(R.id.SpinnerGroupCategory);
                 String name = nameText.getText().toString();
                 Bundle b = new Bundle();
                 b.putString("group_name", name);
+                b.putString("group_category", spinner.getSelectedItem().toString());
 
                 Intent intent = new Intent(GroupCreation.this, GroupCreation2.class);
                 intent.putExtras(b);

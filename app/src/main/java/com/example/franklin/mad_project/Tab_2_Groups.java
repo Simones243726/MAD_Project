@@ -3,6 +3,7 @@ package com.example.franklin.mad_project;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,14 @@ import android.widget.ListView;
 import android.content.Intent;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,24 +45,33 @@ public class Tab_2_Groups extends Fragment {
         View rootView = inflater.inflate(R.layout.tab_2_groups, container, false);
 
         listGroup = (ListView) rootView.findViewById(R.id.listViewGroups);
-        //ArrayList stringList = new ArrayList();
-        //    stringList.add("Group 1");
-        //    stringList.add("Group 2");
 
-        //CustomAdapter adapter = new CustomAdapter (stringList, getActivity());
-        //listGroup.setAdapter(adapter);
-
-        ///
-
-        //listGroup = (ListView)findViewById(R.id.listViewGroups);
         GroupList [] datos = new GroupList[]{
                 new GroupList("London trip", "7", "+10€"),
                 new GroupList("House", "3", "-7€"),
                 new GroupList("Degree gift", "10", "-20€")
         };
-        CustomAdapterGroup adapter = new CustomAdapterGroup(this.getContext(), datos);
-        listGroup.setAdapter(adapter);
-        //
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myDb = database.getReference();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final List<GroupList> groups = new ArrayList<GroupList>();
+
+        myDb.child("users").child(user.getUid()).child("groups").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    GroupList glTemp = new GroupList(snapshot.child("name").getValue().toString(), snapshot.child("category").getValue().toString(), "0");
+                    Log.d("debug", snapshot.child("name").toString());
+                    groups.add(glTemp);
+                }
+
+                CustomAdapterGroup adapter = new CustomAdapterGroup(getContext(), groups);
+                listGroup.setAdapter(adapter);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
 
         listGroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
