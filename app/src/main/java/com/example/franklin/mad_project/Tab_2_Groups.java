@@ -65,7 +65,8 @@ public class Tab_2_Groups extends Fragment {
                         groups.add(gTemp);
                     }
                     catch (Exception e){
-                        Toast.makeText(getContext(),"Empty Values",Toast.LENGTH_LONG).show();
+
+                        Toast.makeText(getContext(),getResources().getString(R.string.values),Toast.LENGTH_LONG).show();
                     }
                 }
 

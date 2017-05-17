@@ -95,7 +95,8 @@ public class GroupCreation2 extends Activity {
 
                 myDb.child("userGroups").child("myUser").setValue(user);
 
-                Toast toast = Toast.makeText(getBaseContext(), "Group created!", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(getBaseContext(), getResources().getString(R.string.group_creation_message), Toast.LENGTH_LONG);
+                //Toast toast = Toast.makeText(getBaseContext(), "Group created!", Toast.LENGTH_LONG);
                 toast.show();
                 finish();
             }

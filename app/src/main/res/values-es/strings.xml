@@ -45,6 +45,21 @@
     <string name="group_creation_member">Seleccione Miembros</string>
     <string name="group_creation_button_2">Crear</string>
 
+    <string name="values">Valores vacios</string>
+
+    <string name="group_creation_message">Grupo Creado</string>
+
+    <string name="login_activity_email">Ingrese direccion de Email!</string>
+    <string name="login_activity_password">Ingrese contraseña!</string>
+
+    <string name="signup_activity_email">Ingrese direccion de Email!</string>
+    <string name="signup_activity_password">Ingrese contraseña!</string>
+    <string name="signup_activity_password_error">Contraseña muy corta, digite al menos 9 caracteres!</string>
+    <string name="signup_activity_authentication">Fallo en la autenticación!</string>
+
+    <string name="tab_label_home">Inicio</string>
+    <string name="tab_label_groups">Grupos</string>
+    <string name="tab_label_expenses">Gastos</string>
 
     <string-array name="categories_array">
         <item>Casa</item>

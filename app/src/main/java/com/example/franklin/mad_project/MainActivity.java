@@ -76,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
             requestPermissions(new String[]{Manifest.permission.READ_CONTACTS, Manifest.permission.SEND_SMS}, PERMISSION_REQUEST_CODE_CONTACTS);
         }
         else{
-            Toast.makeText(this, "Displaying Contacts", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.permission), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Displaying Contacts", Toast.LENGTH_SHORT).show();
         }
     }
     @Override
@@ -84,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
                                            int[] grantResults) {
     switch (requestCode){
         case PERMISSION_REQUEST_CODE_CONTACTS:{
-        //if (requestCode == PERMISSION_REQUEST_CODE_CONTACTS) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 verifyPermissionContact();
                 Toast.makeText(this, getResources().getString(R.string.permission), Toast.LENGTH_SHORT).show();
@@ -166,11 +166,14 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Home";
+                    return getResources().getString(R.string.tab_label_home);
+                    //return "Home";
                 case 1:
-                    return "Groups";
+                    return getResources().getString(R.string.tab_label_groups);
+                    //return "Groups";
                 case 2:
-                    return "Expenses";
+                    return getResources().getString(R.string.tab_label_expenses);
+                    //return "Expenses";
             }
             return null;
         }
