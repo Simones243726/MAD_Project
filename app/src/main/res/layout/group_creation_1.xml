@@ -15,7 +15,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Group Name"
+        android:text="@string/group_creation_name"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -41,7 +41,7 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Group Category"
+        android:text="@string/group_creation_category"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -65,7 +65,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:text="Next" />
+        android:text="@string/group_creation_button" />
 
     <TextView
         android:id="@+id/textView6"
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ToolBarCreationOne"
         android:layout_centerHorizontal="true"
-        android:text="Group Creation 1/2"
+        android:text="@string/group_creation_title"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold" />

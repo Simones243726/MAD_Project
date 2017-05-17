@@ -87,18 +87,18 @@ public class MainActivity extends AppCompatActivity {
         //if (requestCode == PERMISSION_REQUEST_CODE_CONTACTS) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 verifyPermissionContact();
-                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.permission), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.permission_contact), Toast.LENGTH_SHORT).show();
             }
         }
         return;
         case PERMISSION_REQUEST_CODE_SMS: {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 verifyPermissionContact();
-                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.permission), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.permission_sms), Toast.LENGTH_SHORT).show();
             }
         }
         return;

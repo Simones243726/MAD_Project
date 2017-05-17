@@ -58,8 +58,15 @@ public class Tab_2_Groups extends Fragment {
                 final List<Group> groups = new ArrayList<Group>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     List<Integer> users = new ArrayList<Integer>();
-                    Group gTemp = new Group(snapshot.child("name").getValue().toString(), snapshot.child("category").getValue().toString(), users);
-                    groups.add(gTemp);
+                    try {
+                        //Group gTemp = new Group(snapshot.child("name").getValue().toString(), snapshot.child("category").getValue().toString(), users);
+                        //groups.add(gTemp);
+                        Group gTemp = new Group(snapshot.child("name").getValue().toString(), snapshot.child("category").getValue().toString(), users);
+                        groups.add(gTemp);
+                    }
+                    catch (Exception e){
+                        Toast.makeText(getContext(),"Empty Values",Toast.LENGTH_LONG).show();
+                    }
                 }
 
                 CustomAdapterGroup adapter = new CustomAdapterGroup(getContext(), groups);

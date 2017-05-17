@@ -2,10 +2,9 @@
     <string name="app_name">Group 31 MAD</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
-
     <string name="action_sign_in_short">Register</string>
     <string name="email">Email</string>
-    <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
+    <string name="minimum_password">Password too short, enter minimum 9 characters!</string>
     <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
     <string name="change_email">Change Email</string>
     <string name="change_password">Change Password</string>
@@ -31,6 +30,19 @@
     <string name="btn_sign_out">Sign Out</string>
     <string name="lbl_forgot_password">Forgot password?</string>
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
+
+    <string name="permission">Permission Granted</string>
+    <string name="permission_contact">Until you grant the permission, we cannot display contacts</string>
+    <string name="permission_sms">Until you grant the permission, we cannot use SMS</string>
+
+    <string name="group_creation_title">Group Creation 1/2</string>
+    <string name="group_creation_name">Group Name</string>
+    <string name="group_creation_category">Group Category</string>
+    <string name="group_creation_button">Next</string>
+
+    <string name="group_creation_title_2">Group Creation 2/2</string>
+    <string name="group_creation_member">Choose Members</string>
+    <string name="group_creation_button_2">Create</string>
 
     <string-array name="categories_array">
         <item>House</item>
